@@ -16,6 +16,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name="com.example.csi3370project.HomeActivity" />
+
+        <activity
+            android:name="com.example.csi3370project.LoginActivity" />
     </application>
 
 </manifest>
