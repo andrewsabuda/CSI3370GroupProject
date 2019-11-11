@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -24,6 +25,7 @@ public class HomeActivity extends AppCompatActivity {
     Button btnLogout;
     FirebaseAuth mFirebaseAuth;
     private FirebaseAuth.AuthStateListener mAuthStateListener;
+    private EditText editText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,5 +80,13 @@ public class HomeActivity extends AppCompatActivity {
                 System.out.println("Connection closed: " + reason);
             }
         });
+    }
+
+    public void sendMessage(View view) {
+        String message = editText.getText().toString();
+        if (message.length() > 0) {
+            scaledrone.publish(roomName, message);
+            editText.getText().clear();
+        }
     }
 }
