@@ -9,6 +9,7 @@ import android.widget.EditText;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.scaledrone.lib.Listener;
 import com.scaledrone.lib.Message;
 import com.scaledrone.lib.Room;
@@ -20,6 +21,7 @@ public class HomeActivity extends AppCompatActivity {
     private String channelID = "g9AinhUXKb3esN1g";
     private String roomName = "CSI3370";
     private Scaledrone scaledrone;
+    LoginActivity loginActivity = new LoginActivity();
 
     // Firebase
     Button btnLogout;
@@ -42,8 +44,15 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
+        LoginActivity loginActivity = new LoginActivity();
+
+        String userEmail = loginActivity.userEmail;
+        MemberData data = new MemberData(userEmail);
+        System.out.println("Logging: " + userEmail);
+
         // Scaledrone connection done in onCreate, this may change
-        scaledrone = new Scaledrone(channelID);
+        scaledrone = new Scaledrone(channelID, data);
+
         scaledrone.connect(new Listener() {
             @Override
             public void onOpen() {
