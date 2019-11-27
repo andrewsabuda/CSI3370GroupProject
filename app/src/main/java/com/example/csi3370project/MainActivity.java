@@ -30,8 +30,8 @@ public class MainActivity extends AppCompatActivity {
         mFirebaseAuth = FirebaseAuth.getInstance();
         emailId = findViewById(R.id.editText);
         password = findViewById(R.id.editText2);
-        btnSignUp = findViewById(R.id.button2);
-        tvSignIn = findViewById(R.id.textView);
+        btnSignUp = findViewById(R.id.btnSignin);
+        tvSignIn = findViewById(R.id.txtSignup);
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

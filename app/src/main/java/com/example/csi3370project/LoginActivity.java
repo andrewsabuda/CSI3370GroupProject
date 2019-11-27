@@ -22,7 +22,6 @@ public class LoginActivity extends AppCompatActivity {
     Button btnSignIn;
     TextView tvSignUp;
     FirebaseAuth mFirebaseAuth;
-    public static String userEmail;
     private FirebaseAuth.AuthStateListener mAuthStateListener;
 
     @Override
@@ -40,24 +39,21 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser mFirebaseUser = mFirebaseAuth.getCurrentUser();
-//                if( mFirebaseUser != null ){
-//                    Toast.makeText(LoginActivity.this,"You are logged in",Toast.LENGTH_SHORT).show();
-//                    Intent i = new Intent(LoginActivity.this, HomeActivity.class);
-//                    startActivity(i);
-//                }
-//                else{
+                if( mFirebaseUser != null ){
+                    Toast.makeText(LoginActivity.this,"You are logged in",Toast.LENGTH_SHORT).show();
+                    Intent i = new Intent(LoginActivity.this, HomeActivity.class);
+                    startActivity(i);
+                }
+                else{
                     Toast.makeText(LoginActivity.this,"Please Login",Toast.LENGTH_SHORT).show();
-//                }
+                }
             }
         };
 
         btnSignIn.setOnClickListener(new View.OnClickListener() {
-            LoginActivity loginActivity = new LoginActivity();
-
             @Override
             public void onClick(View v) {
                 String email = emailId.getText().toString();
-                loginActivity.userEmail = email;
                 String pwd = password.getText().toString();
                 if(email.isEmpty()){
                     emailId.setError("Please enter email id");
@@ -105,29 +101,5 @@ public class LoginActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         mFirebaseAuth.addAuthStateListener(mAuthStateListener);
-    }
-}
-
-
-class MemberData {
-
-    private String name;
-
-    public MemberData(String name) {
-        this.name = name;
-    }
-
-    public MemberData() {
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    @Override
-    public String toString() {
-        return "MemberData{" +
-                "name='" + name + '\'' +
-                '}';
     }
 }
